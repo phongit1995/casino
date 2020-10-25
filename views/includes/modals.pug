@@ -1,0 +1,48 @@
+//- LOGIN MODAL
+#loginModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='loginModal', aria-hidden='true')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#loginModal.modal-title Login
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                .form-group
+                    label(for="LUsername") Username:
+                    input.form-control(id="LUsername", type="text", autocomplete="off")
+                .form-group
+                    label(for="LPassword") Password:
+                    input.form-control(id="LPassword", type="password", autocomplete="off")
+            .modal-footer
+                button.btn.btn-secondary(type='button', id="goto_register_btn")
+                    i.fas.fa-user-plus
+                    |  Register
+                button.btn.btn-primary(type='button', id="login_btn")
+                    i.fas.fa-sign-in-alt
+                    |  Login
+
+//- REGISTER MODAL
+#registerModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='registerModal', aria-hidden='true')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#registerModal.modal-title Register
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                .form-group
+                    label(for="RUsername") Username:
+                    input.form-control(id="RUsername", type="text", autocomplete="off")
+                .form-group
+                    label(for="REmail") Email:
+                    input.form-control(id="REmail", type="text", autocomplete="off")
+                .form-group
+                    label(for="RPassword") Password:
+                    input.form-control(id="RPassword", type="password", autocomplete="off")
+                .form-group
+                    label(for="RPassword2") Confirm Password:
+                    input.form-control(id="RPassword2", type="password", autocomplete="off")
+            .modal-footer
+                button.btn.btn-secondary(type='button', id="register_btn")
+                    i.fas.fa-user-plus
+                    |  Register

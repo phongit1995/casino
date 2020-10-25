@@ -1,0 +1,40 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    a.navbar-brand(href='/')
+        img(src="/img/logo.png", style="width: 100px;")
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarColor02' aria-controls='navbarColor02' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    #navbarColor02.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+            li.nav-item(data-link="/")
+                a.nav-link(href='/')
+                    i.fas.fa-home
+                    |  Roulette
+            li.nav-item(data-link="/fair")
+                a.nav-link(href='/fair')
+                    i.fas.fa-check-circle
+                    |  Provably Fair
+            li.nav-item(data-link="/affiliates")
+                a.nav-link(href='/affiliates')
+                    i.fas.fa-users
+                    |  Affiliates
+            li.nav-item(data-link="/deposit")
+                a.nav-link(href='/deposit')
+                    i.fas.fa-plus-square
+                    |  Deposit
+            li.nav-item(data-link="/withdraw")
+                a.nav-link(href='/withdraw')
+                    i.fas.fa-minus-square
+                    |  Withdraw
+        div.form-inline.my-2.my-lg-0
+            if !user
+                button.btn.btn-primary(data-toggle="modal", data-target="#loginModal")
+                    i.fas.fa-sign-in-alt
+                    |  Login
+            else
+                .userProfile
+                    span Logged in as&nbsp;
+                        a(href="/profile")
+                            b=user.username
+                        | &nbsp;
+                        span
+                            i.fas.fa-sign-out-alt(id="logout")
