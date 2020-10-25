@@ -9,7 +9,7 @@ const config = {
         database: "casino"
     },
     server: {
-        port: 8000, // CHANGE ONLY IF YOU KNOW WHAT YOU DO!!
+        port: 80, // CHANGE ONLY IF YOU KNOW WHAT YOU DO!!
     },
     authentication: {
         secret: "RANDOM_STRING_HERE", // CHANGE IF YOU WANT ANOTHER SECRET FOR AUTHENTICATION PROTOCOL
