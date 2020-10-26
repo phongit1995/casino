@@ -5,7 +5,7 @@ const config = {
     mysql: {
         host: "localhost",
         user: "root",
-        password: "",
+        password: "Phongit995",
         database: "casino"
     },
     server: {
@@ -15,8 +15,8 @@ const config = {
         secret: "RANDOM_STRING_HERE", // CHANGE IF YOU WANT ANOTHER SECRET FOR AUTHENTICATION PROTOCOL
     },
     coinpayments: {
-        key: "a102908b6fa9512c573e123cca372ee6456809949027aadbe35ec3be453eb290",
-        secret: "f47D9CAe1f073267557a6F0e33F2e9Ec44C3563E37C1bda77C22619f"
+        key: "f1e150e15a98c4cf43291aafe0a7c304c4ffa95a294df024d4282e68cb127083",
+        secret: "54C972a4AFc422EB3bb971dF7f80D027bBf3e421B87b6BAdf596B33d7a1a4c81"
     }
 };
 
