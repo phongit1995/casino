@@ -118,7 +118,7 @@ app.post("/verify/ipn",async(req,res)=>{
     console.log("----- GET A SUCCESS----");
     console.log("----- GET A SUCCESS----");
     console.log("----- GET A SUCCESS----");
-    console.log(req);
+    //console.log(req);
     console.log("----- GET A SUCCESS----");
 })
 
