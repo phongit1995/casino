@@ -19,9 +19,10 @@ html(lang="en")
                     .roulette-balance Balance: 
                         i.fas.fa-coins.gold
                         | &nbsp;#{user.balance}
+                .form-group.rollsHistory
                 .roulette-set-bet
                     .form-group(style="z-index: 999;")
-                        input.form-control(type="number", min="1", value="0", id="RBet")
+                        input.form-control(type="number", min="1", value="0", id="RBet")   
                     .form-group(style="z-index: 999;")
                         button.btn.btn-danger.rbet(type="button", data-action="clear") CLEAR
                         button.btn.btn-primary.rbet(type="button", data-action="+10") +10
@@ -31,7 +32,7 @@ html(lang="en")
                         button.btn.btn-primary.rbet(type="button", data-action="+100000") +100,000
                         button.btn.btn-primary.rbet(type="button", data-action="1/2") 1/2
                         button.btn.btn-primary.rbet(type="button", data-action="x2") x2
-                    .form-group.rollsHistory
+                   
                 .roulette-bets
                     .red-bets
                         .red-bet.rbetbtn(data-bet="red") 1 to 7, Win 2x

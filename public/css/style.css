@@ -81,6 +81,7 @@
     padding: 25px;
     display: flex;
     justify-content: center;
+    padding-top: 50px;
 }
 
 .roulette-set-bet .form-group:nth-child(1) input {
