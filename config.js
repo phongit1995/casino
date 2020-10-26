@@ -5,11 +5,11 @@ const config = {
     mysql: {
         host: "localhost",
         user: "root",
-        password: "Phongit995",
+        password: "",
         database: "casino"
     },
     server: {
-        port: 80, // CHANGE ONLY IF YOU KNOW WHAT YOU DO!!
+        port: 3000, // CHANGE ONLY IF YOU KNOW WHAT YOU DO!!
     },
     authentication: {
         secret: "RANDOM_STRING_HERE", // CHANGE IF YOU WANT ANOTHER SECRET FOR AUTHENTICATION PROTOCOL
