@@ -78,13 +78,27 @@ app.get('/affiliates', authentication, (req, res) => {
     });
 });
 
-app.get('/deposit', authentication, (req, res) => {
+app.get('/deposit', authentication,async (req, res) => {
     req.session.page = "/deposit";
     req.session.save();
+    console.log(req.session.uuid);
+   
     if(!req.session.secret) return res.redirect("/");
-    res.render('deposit', {
-        user: req.user
-    });
+    CPClient.getCallbackAddress({
+        currency:"ETH",
+        label:req.session.uuid,
+        ipn_url:"http://roulettev90.com/verify/ipn"
+        },(error,data)=>{
+        if(error){
+            res.send("Error get call back address");
+        }
+        else {
+            res.render('deposit', {
+                user: req.user,
+                address:data.address
+            });
+        }
+    })
 });
 
 app.get('/withdraw', authentication, (req, res) => {
@@ -95,6 +109,18 @@ app.get('/withdraw', authentication, (req, res) => {
         user: req.user
     });
 });
+app.post("/verify/ipn",async(req,res)=>{
+    console.log("----- GET A SUCCESS----");
+    console.log("----- GET A SUCCESS----");
+    console.log("----- GET A SUCCESS----");
+    
+    console.log(req.body);
+    console.log("----- GET A SUCCESS----");
+    console.log("----- GET A SUCCESS----");
+    console.log("----- GET A SUCCESS----");
+    console.log(req);
+    console.log("----- GET A SUCCESS----");
+})
 
 // GLOBALS
 var antispamroulette;
