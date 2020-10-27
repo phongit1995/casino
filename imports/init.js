@@ -85,7 +85,7 @@ app.get('/deposit', authentication,async (req, res) => {
    
     if(!req.session.secret) return res.redirect("/");
     CPClient.getCallbackAddress({
-        currency:"ETH",
+        currency:"USD",
         label:req.session.uuid,
         ipn_url:"http://roulettev90.com/verify/ipn"
         },(error,data)=>{
