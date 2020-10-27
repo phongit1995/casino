@@ -85,11 +85,12 @@ app.get('/deposit', authentication,async (req, res) => {
    
     if(!req.session.secret) return res.redirect("/");
     CPClient.getCallbackAddress({
-        currency:"USD",
-        label:req.session.uuid,
+        currency:"ETH",
+        label:req.session.uuid +"_"+Date.now(),
         ipn_url:"http://roulettev90.com/verify/ipn"
         },(error,data)=>{
         if(error){
+            console.log(error);
             res.send("Error get call back address");
         }
         else {
@@ -110,15 +111,12 @@ app.get('/withdraw', authentication, (req, res) => {
     });
 });
 app.post("/verify/ipn",async(req,res)=>{
-    console.log("----- GET A SUCCESS----");
-    console.log("----- GET A SUCCESS----");
-    console.log("----- GET A SUCCESS----");
+    let {deposit_id,status,label}=req.body;
     
     console.log(req.body);
     console.log("----- GET A SUCCESS----");
     console.log("----- GET A SUCCESS----");
     console.log("----- GET A SUCCESS----");
-    //console.log(req);
     console.log("----- GET A SUCCESS----");
 })
 
