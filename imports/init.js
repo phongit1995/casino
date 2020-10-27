@@ -1,3 +1,5 @@
+const { request } = require("http");
+let requestPromise = require("request");
 let Rates;
 
 getRates();
@@ -111,13 +113,38 @@ app.get('/withdraw', authentication, (req, res) => {
     });
 });
 app.post("/verify/ipn",async(req,res)=>{
-    let {deposit_id,status,label}=req.body;
-    
     console.log(req.body);
-    console.log("----- GET A SUCCESS----");
-    console.log("----- GET A SUCCESS----");
-    console.log("----- GET A SUCCESS----");
-    console.log("----- GET A SUCCESS----");
+    let {status,label,amount}=req.body;
+    if(typeof status== "undefined" || typeof label== "undefined" ||typeof amount== "undefined" ){
+        return res.send("ERROR_DATA");
+    }
+    let uuid_user = label.slice(0,label.indexOf("_"));
+    if(status!=100){
+        res.send("STATUS_NOT_FOUND");
+    }
+    pool.query("SELECT COUNT(*) as numberCount from transactions where tid=?",[label],function(error,rows,fields){
+        if(error)throw error ;
+        if(rows[0].numberCount>0){
+                console.log("BAN GHI DA TON TAI");
+                return "IS EXIT"
+        };
+        requestPromise.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD",function(errorRQ,dataRQ,body){
+            if(errorRQ)throw errorRQ ; 
+            let dataQR = JSON.parse(body);
+            let amountCoin = dataQR.USD*amount*100;
+            pool.query("INSERT INTO transactions (tid,uid,type,amount,status) VALUES(?,?,?,?,?)",[label,uuid_user,"DEPOSIT",amountCoin,"SUCCESS"],function(errorSet,resultSet){
+                if(errorSet){console.log("Inset Fail")};
+                pool.query("UPDATE users SET balance= balance+ ? WHERE uuid=?",[amountCoin,uuid_user],function(errorAdd,resultAdd){
+                    if(errorAdd){
+                        console.log("ADD ERROR");
+                        throw errorAdd;
+                    }
+                    console.log("ADD COIN SUCCESS USER :" + uuid_user + "  Coin : " + amountCoin );
+                })
+            })
+        })
+    })
+    res.send("Phong")
 })
 
 // GLOBALS
