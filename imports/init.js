@@ -132,9 +132,10 @@ app.post("/verify/ipn",async(req,res)=>{
             if(errorRQ)throw errorRQ ; 
             let dataQR = JSON.parse(body);
             let amountCoin = dataQR.USD*amount*100;
-            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid) VALUES(?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT",amountCoin,"SUCCESS","DEPOSIT"],function(errorSet,resultSet){
+            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT",amountCoin,"SUCCESS","DEPOSIT",ltime()],function(errorSet,resultSet){
                 if(errorSet){console.log("Inset Fail");
                 console.log(errorSet);
+                throw errorSet;
                 };
                 pool.query("UPDATE users SET balance= balance+ ? ,deposited=deposited+ ?WHERE uuid=?",[amountCoin,amountCoin,uuid_user],function(errorAdd,resultAdd){
                     if(errorAdd){
