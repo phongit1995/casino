@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <%-include('common/header.ejs')%>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <a class="navbar-brand" href="/"><img src="/img/logo.png" style="width: 100px;"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+         <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item" data-link="/"><a class="nav-link" href="/"><i class="fas fa-home"></i> Roulette</a></li>
+               <li class="nav-item" data-link="/fair"><a class="nav-link" href="/fair"><i class="fas fa-check-circle"></i> Provably Fair</a></li>
+               <li class="nav-item" data-link="/affiliates"><a class="nav-link" href="/affiliates"><i class="fas fa-users"></i> Affiliates</a></li>
+               <li class="nav-item" data-link="/deposit"><a class="nav-link" href="/deposit"><i class="fas fa-plus-square"></i> Deposit</a></li>
+               <li class="nav-item" data-link="/withdraw"><a class="nav-link" href="/withdraw"><i class="fas fa-minus-square"></i> Withdraw</a></li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+               <div class="userProfile"><span>Logged in as&nbsp;<a href="/profile"><b>phongit1995</b></a>&nbsp;<span><i class="fas fa-sign-out-alt" id="logout"></i></span></span></div>
+            </div>
+         </div>
+      </nav>
+      <div class="jumbotron">
+         <h3><i class="far fa-user"></i>&nbsp;Profile</h3>
+         <div class="profile">
+            <div class="avatar"></div>
+            <div class="info">
+               <div class="name">Username</div>
+               <div class="registered">Registered on</div>
+               <div class="uuid">UUID: xxxx-xxxx-xxxx-xxxx</div>
+            </div>
+         </div>
+         <div class="pstatistics">
+            <div class="box">
+               <div class="type"><i class="fas fa-gamepad blue"></i>&nbsp;TOTAL BETS</div>
+               <div class="amount rbets">0</div>
+            </div>
+            <div class="box">
+               <div class="type"><i class="fas fa-coins gold"></i>&nbsp;TOTAL DEPOSITED</div>
+               <div class="amount deposited">0</div>
+            </div>
+            <div class="box">
+               <div class="type"><i class="fas fa-coins gold"></i>&nbsp;TOTAL WITHDRAWN</div>
+               <div class="amount withdrawn">0</div>
+            </div>
+            <div class="box">
+               <div class="type"><i class="fas fa-coins gold"></i>&nbsp;WAGERED</div>
+               <div class="amount wagered">0</div>
+            </div>
+         </div>
+         <div class="ptransactions">
+            <h4><i class="fas fa-scroll"></i>&nbsp;Transactions</h4>
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th scope="col">Type</th>
+                     <th scope="col">Amount</th>
+                     <th scope="col">TXID</th>
+                     <th scope="col">Timestamp</th>
+                     <th scope="col">Status</th>
+                  </tr>
+               </thead>
+               <tbody class="pTransactions"></tbody>
+            </table>
+         </div>
+      </div>
+      <%-include('common/modals.ejs')%>
+   </body>
+</html>

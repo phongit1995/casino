@@ -4,8 +4,8 @@
   "description": "Echo Services Core v1.0 by Echo - Discord: Echo#1182",
   "main": "app.js",
   "scripts": {
-    "start":"node app.js",
-    "dev":"nodemon --exec node app.js",
+    "start": "node app.js",
+    "dev": "nodemon --exec node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Echo",
@@ -13,6 +13,7 @@
   "dependencies": {
     "coinpayments": "^2.1.0",
     "connect-redis": "^4.0.4",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.3",
     "express-session": "^1.17.1",

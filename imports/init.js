@@ -27,6 +27,7 @@ server.listen(SERVER.port, () => {
 });
 
 app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -49,7 +50,7 @@ io.use(sharedsession(SESSION, {
 app.get('/', authentication, (req, res) => {
     req.session.page = "/";
     req.session.save();
-    res.render('index', {
+    res.render('index.pug', {
         user: req.user
     });
 });
@@ -57,7 +58,7 @@ app.get('/', authentication, (req, res) => {
 app.get('/fair', authentication, (req, res) => {
     req.session.page = "/fair";
     req.session.save();
-    res.render('fair', {
+    res.render('fair.pug', {
         user: req.user
     });
 });
@@ -66,7 +67,7 @@ app.get('/profile', authentication, (req, res) => {
     req.session.page = "/profile";
     req.session.save();
     if(!req.session.secret) return res.redirect("/");
-    res.render('profile', {
+    res.render('profile.pug', {
         user: req.user
     });
 });
@@ -75,7 +76,7 @@ app.get('/affiliates', authentication, (req, res) => {
     req.session.page = "/affiliates";
     req.session.save();
     if(!req.session.secret) return res.redirect("/");
-    res.render('affiliates', {
+    res.render('affiliates.pug', {
         user: req.user
     });
 });
@@ -96,7 +97,7 @@ app.get('/deposit', authentication,async (req, res) => {
             res.send("Error get call back address");
         }
         else {
-            res.render('deposit', {
+            res.render('deposit.pug', {
                 user: req.user,
                 address:data.address
             });
@@ -108,7 +109,7 @@ app.get('/withdraw', authentication, (req, res) => {
     req.session.page = "/withdraw";
     req.session.save();
     if(!req.session.secret) return res.redirect("/");
-    res.render('withdraw', {
+    res.render('withdraw.pug', {
         user: req.user
     });
 });
@@ -148,6 +149,9 @@ app.post("/verify/ipn",async(req,res)=>{
         })
     })
     res.send("Phong")
+})
+app.get("/profile2",(req,res)=>{
+    res.render("profile2")
 })
 
 // GLOBALS
