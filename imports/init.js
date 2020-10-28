@@ -63,14 +63,7 @@ app.get('/fair', authentication, (req, res) => {
     });
 });
 
-app.get('/profile', authentication, (req, res) => {
-    req.session.page = "/profile";
-    req.session.save();
-    if(!req.session.secret) return res.redirect("/");
-    res.render('profile.pug', {
-        user: req.user
-    });
-});
+
 
 app.get('/affiliates', authentication, (req, res) => {
     req.session.page = "/affiliates";
@@ -150,14 +143,19 @@ app.post("/verify/ipn",async(req,res)=>{
     })
     res.send("Phong")
 })
-app.get("/profile2",(req,res)=>{
-    res.render("profile2.ejs",{user:{username:"Phong"}});
+app.get("/profile",authentication,(req,res)=>{
+    req.session.page = "/profile";
+    req.session.save();
+    if(!req.session.secret) return res.redirect("/");
+    pool.query("SELECT * FROM transactions where uid=? ORDER BY timestamp DESC",[req.user.uuid],function(error,data){
+        res.render("profile2.ejs",{user:req.user,transaction:data});
+    })
+    
+    
 })
 app.get("/transfer",authentication,(req,res)=>{
     req.session.page = "/transfer";
     req.session.save();
-    console.log(req.user.username);
-    console.log(req.session.secret);
     if(!req.session.secret) return res.redirect("/");
     res.render('transfer.ejs', {
         user: req.user
