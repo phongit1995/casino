@@ -1,4 +1,4 @@
-const NAME = "ES Core v1.0";
+const NAME = "Roulette V.90";
 var tpage;
 
 $(function() {
