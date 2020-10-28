@@ -425,13 +425,14 @@ function userInterface() {
         if(USER.balance<amount){
             return res.json({success: false, error: `You don't have enough balance to Transfer`});
         }
-        pool.query("select COUNT(*)as user from users where username=?",[username],function(aaa,bbb){
+        pool.query("select * from users where username=?",[username],function(aaa,bbb){
             if(aaa) {
                 return res.json({success: false, error: `Error. Please Contact Admin`});
             } ;
-            if(bbb[0].user==0){
+            if(bbb.length==0){
                 return res.json({success: false, error: `user receive not found`});
             };
+            userReceive = bbb[0];
             let amountReceive =  (amount/100)*(100-PERCENT_TRANSFER);
             amountReceive = parseInt(amountReceive);
             pool.query("UPDATE users set balance=balance-? where username=? ",[amount,USER.username],function(error,result){
@@ -442,6 +443,12 @@ function userInterface() {
                     if(errorSend){
                         return res.json({success: false, error: `Error when Send to User please Connect Admin`});
                     }
+                    pool.query("INSERT INTO transactions  (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[userReceive.uuid,USER.uuid,"SEND",amount,"SUCCESS",userReceive.username,ltime()],function(errorTr,resultTr){
+                        console.log(error);
+                        pool.query("INSERT INTO transactions  (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[USER.uuid,userReceive.uuid,"RECEIVE",amount,"SUCCESS",USER.username,ltime()],function(errorTrRe,resultTrRe){
+                            console.log(error);
+                        })
+                    })
                     return res.json({success: true, error: `Transfer Successfully`});
                 })
             })
@@ -449,7 +456,6 @@ function userInterface() {
     })
     function authenticationUser(req,res,next){
         let USER = req.session ;
-        //console.log(USER);
         pool.query("SELECT * from users where id=?",[USER.uid],function(error,result){
             if(error){
                 return res.json({success: false, error: `User Not Found`});
