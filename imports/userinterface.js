@@ -174,20 +174,20 @@ function userInterface() {
                 makeWithdrawal();
                 async function makeWithdrawal() {
                     await CPClient.createWithdrawal({ amount: USD_AMOUNT, address: ADDRESS, currency: "ETH", currency2: "USD", add_tx_fee: 0, auto_confirm: 1, note: `Withdrawal of U${USER.uid} of $${USD_AMOUNT}.` }).then(function(r) {
+                        console.log(r);
                         if(r.status == 1) {
                             pool.query("UPDATE users SET balance = balance - ?, withdrawn = withdrawn + ? WHERE id = ?", [amount, amount, USER.uid], function(aa,bb) {
-                                if(aa) throw aa;
+                        
+                                console.log(aa);
                             });
     
                             pool.query("INSERT INTO transactions SET tid = ?, uid = ?, type = ?, amount = ?, status = ?, timestamp = ?", [
-                                r.id, USER.uid, "withdraw", AMOUNT, 0, ltime()
+                                r.id, USER.uuid, "WITHDRAW", AMOUNT, "PENDING", ltime()
                             ], function(ab, cd) {
+                            
                                 if(ab) throw ab;
                             });
                         }
-    
-                        console.error(r);
-    
                         if(r.status == 1) return res.json({success: true, msg: `The withdrawal has been created. Wait for blockchain to confirm the withdrawal!`});
                         else return res.json({success: false, error: "There was an error creating the withdraw!"});
                     }).catch((e) => {
