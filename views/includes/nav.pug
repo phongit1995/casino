@@ -25,6 +25,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
                 a.nav-link(href='/withdraw')
                     i.fas.fa-minus-square
                     |  Withdraw
+            if user
+                li.nav-item(data-link="/transfer")
+                a.nav-link(href='/transfer')
+                    i.fas.fa-credit-card
+                    |  Transfer
         div.form-inline.my-2.my-lg-0
             if !user
                 button.btn.btn-primary(data-toggle="modal", data-target="#loginModal")

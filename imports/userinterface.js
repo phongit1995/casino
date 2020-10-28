@@ -1,3 +1,5 @@
+const { createPool } = require("mysql");
+const PERCENT_TRANSFER=6;
 function userInterface() {
     app.post("/register", antispamendpoints, (req, res) => {
 
@@ -411,7 +413,57 @@ function userInterface() {
         });
     });
 
-
+    app.post("/transfer",pauthentication, authenticationUser,antispamroulette,(req, res)=>{
+        let USER = req.user ;
+        let {username,amount}= req.body;
+        if(typeof username=="undefined" || typeof amount==""){
+            return res.json({success: false, error: `Amount is a number`});
+        }
+        if(USER.username==username){
+            return res.json({success: false, error: `Can't transfer to yourSelf`});
+        }
+        if(USER.balance<amount){
+            return res.json({success: false, error: `You don't have enough balance to Transfer`});
+        }
+        pool.query("select COUNT(*)as user from users where username=?",[username],function(aaa,bbb){
+            if(aaa) {
+                return res.json({success: false, error: `Error. Please Contact Admin`});
+            } ;
+            if(bbb[0].user==0){
+                return res.json({success: false, error: `user receive not found`});
+            };
+            let amountReceive =  (amount/100)*(100-PERCENT_TRANSFER);
+            amountReceive = parseInt(amountReceive);
+            pool.query("UPDATE users set balance=balance-? where username=? ",[amount,USER.username],function(error,result){
+                if(error){
+                    return res.json({success: false, error: `Error when Change please Connect Admin`});
+                };
+                pool.query("UPDATE users set balance=balance+? where username=? ",[amountReceive,username],function(errorSend,resultSend){
+                    if(errorSend){
+                        return res.json({success: false, error: `Error when Send to User please Connect Admin`});
+                    }
+                    return res.json({success: true, error: `Transfer Successfully`});
+                })
+            })
+        })
+    })
+    function authenticationUser(req,res,next){
+        let USER = req.session ;
+        //console.log(USER);
+        pool.query("SELECT * from users where id=?",[USER.uid],function(error,result){
+            if(error){
+                return res.json({success: false, error: `User Not Found`});
+            }
+            if(result.length>0){
+                req.user= result[0];
+                next();
+            }
+            else{
+                return res.json({success: false, error: `User Not Found`});
+            }
+        })
+        
+    }
     app.post("/logout", (req, res) => {
         if(req.session.username) {
             req.session.destroy();

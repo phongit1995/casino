@@ -7,9 +7,16 @@
           <li class="nav-item" data-link="/affiliates"><a class="nav-link" href="/affiliates"><i class="fas fa-users"></i> Affiliates</a></li>
           <li class="nav-item" data-link="/deposit"><a class="nav-link" href="/deposit"><i class="fas fa-plus-square"></i> Deposit</a></li>
           <li class="nav-item" data-link="/withdraw"><a class="nav-link" href="/withdraw"><i class="fas fa-minus-square"></i> Withdraw</a></li>
+          <%if(user){%>
+            <li class="nav-item" data-link="/withdraw"><a class="nav-link" href="/transfer"><i class="fas fa-credit-card"></i> Transfer</a></li>
+         <%}%>
        </ul>
        <div class="form-inline my-2 my-lg-0">
-          <div class="userProfile"><span>Logged in as&nbsp;<a href="/profile"><b>phongit1995</b></a>&nbsp;<span><i class="fas fa-sign-out-alt" id="logout"></i></span></span></div>
+          <%if(!user){%>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i> Login</button>
+         <%} else{%>
+          <div class="userProfile"><span>Logged in as&nbsp;<a href="/profile"><b><%=user.username%></b></a>&nbsp;<span><i class="fas fa-sign-out-alt" id="logout"></i></span></span></div>
+          <%}%>
        </div>
     </div>
  </nav>

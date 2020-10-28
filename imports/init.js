@@ -151,7 +151,17 @@ app.post("/verify/ipn",async(req,res)=>{
     res.send("Phong")
 })
 app.get("/profile2",(req,res)=>{
-    res.render("profile2")
+    res.render("profile2.ejs",{user:{username:"Phong"}});
+})
+app.get("/transfer",authentication,(req,res)=>{
+    req.session.page = "/transfer";
+    req.session.save();
+    console.log(req.user.username);
+    console.log(req.session.secret);
+    if(!req.session.secret) return res.redirect("/");
+    res.render('transfer.ejs', {
+        user: req.user
+    });
 })
 
 // GLOBALS

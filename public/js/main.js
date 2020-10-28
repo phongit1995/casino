@@ -83,8 +83,26 @@ $(function() {
     $(document).on("click", "#aff_createcodebtn", function() { userCreatecode(); });
     $(document).on("click", "#aff_collectearningsbtn", function() { userAffCollect(); });
     $(document).on("click", "#withdraw_btn", function() { userWithdrawFunds(); });
+    // add Transfer onclick
+    $(document).on("click","#transfer_btn",function(){userTransfer();})
 
     // USER FUNCTIONS
+    function userTransfer(){
+        let username = $("#username_transfer").val();
+        let amount = $("#amount_transfer").val();
+        console.log(username,amount);
+        if(username==""){
+            return toastr.error(`UserName please!`);
+        }
+        user("transfer","POST",{username:username,amount:amount},(error,res)=>{
+            if(error) return toastr.error(`Stop flood!`);
+            console.log(res);
+            if(!error && res.success) {
+                toastr.success(`Transfer sucessfully to user!`);
+            } else toastr.error(res.error);
+            
+        })
+    }
     function userRegister() {
         let username = $("#RUsername").val();
         let email = $("#REmail").val();
@@ -95,6 +113,7 @@ $(function() {
             if(!err && res.success) {
                 toastr.success(`You have been sucessfully register, you can now login!`);
             } else toastr.error(res.error);
+            
         });
     }
 
