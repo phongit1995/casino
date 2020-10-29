@@ -74,10 +74,18 @@ app.get('/affiliates', authentication, (req, res) => {
     });
 });
 app.get("/deposit",authentication,(req,res)=>{
-    req.session.page = "/transfer";
+    req.session.page = "/deposit";
     req.session.save();
     if(!req.session.secret) return res.redirect("/");
     res.render('deposit.ejs', {
+        user: req.user
+    });
+})
+app.get("/deposit/payeer",authentication,(req,res)=>{
+    req.session.page = "/deposit/payeer";
+    req.session.save();
+    if(!req.session.secret) return res.redirect("/");
+    res.render('deposit-payeer.ejs', {
         user: req.user
     });
 })
