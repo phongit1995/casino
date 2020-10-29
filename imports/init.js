@@ -161,6 +161,34 @@ app.get("/transfer",authentication,(req,res)=>{
         user: req.user
     });
 })
+// PAYEER STATUS
+app.post("/payeer/success",(req,res)=>{
+    console.log("----SUCCESS PAYEER----");
+    console.log("----SUCCESS PAYEER----");
+    console.log("----SUCCESS PAYEER----");
+    console.log(req.body);
+    console.log("----SUCCESS PAYEER----");
+    console.log("----SUCCESS PAYEER----");
+    console.log("----SUCCESS PAYEER----");
+})
+app.post("/payeer/fail",(req,res)=>{
+    console.log("----FAIL PAYEER----");
+    console.log("----FAIL PAYEER----");
+    console.log("----FAIL PAYEER----");
+    console.log(req.body);
+    console.log("----FAIL PAYEER----");
+    console.log("----FAIL PAYEER----");
+    console.log("----FAIL PAYEER----");
+})
+app.post("/payeer/status",(req,res)=>{
+    console.log("----STATUS PAYEER----");
+    console.log("----STATUS PAYEER----");
+    console.log("----STATUS PAYEER----");
+    console.log(req.body);
+    console.log("----STATUS PAYEER----");
+    console.log("----STATUS PAYEER----");
+    console.log("----STATUS PAYEER----");
+})
 
 // GLOBALS
 var antispamroulette;
