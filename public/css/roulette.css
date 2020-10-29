@@ -63,13 +63,12 @@
   position: absolute;
   left: 0; */
   display: flex;
-  margin-left: 2rem;
   background-color: #060606;
   padding: 5px;
   border-radius: 15px;
   position: absolute;
   left: 30%;
-  margin-top: 0.5rem;
+  margin: 1rem 0;
 }
 
 .rollsHistory .bhist {
@@ -177,4 +176,68 @@
   color: #fff;
   font-size: 1.4rem;
   font-weight: 600;
+}
+.form-group {
+  margin-bottom: 0;
+}
+@media only screen and (max-width: 1062px) {
+  .roulette-wrapper .wheel .roww .card {
+    height: 50px;
+    width: 50px;
+}
+  .roulette-bets .red-bets .red-bet, .roulette-bets .green-bets .green-bet, .roulette-bets .black-bets .black-bet {
+    padding: 5px!important;
+    font-size: 16px!important;
+  }
+  .roulette-set-bet .form-group:nth-child(2) {
+    margin-left: 5px!important;
+  }
+  .roulette-set-bet .form-group:nth-child(2) button:nth-child(1) {
+    margin-right: 0!important;
+  }
+  .roulette-set-bet .btn {
+    padding: 10px!important;
+  }
+
+}
+@media only screen and (max-width: 924px) {
+  body .Roulette {
+    display: flex;
+    flex-direction: column!important;
+    align-items: center;
+  }
+  body .roulette {
+    width: 100%!important;
+  }
+  .Roulette .chat {
+    width: 50%!important;
+  }
+  .Roulette .chat {
+    margin-left: 0!important;
+    margin-top: 20px;
+  }
+  .roulette-set-bet {
+    flex-direction: column!important;
+}
+  .roulette-set-bet .form-group {
+    width: 100%!important;
+    margin-top: 10px;
+  }
+  .roulette-set-bet .form-group:nth-child(1) input {
+    width: 100%!important;
+  }
+}
+@media only screen and (max-width: 548px) {
+  .roulette-set-bet .btn {
+    width: 30%;
+    margin: 10px;
+  }
+  .Roulette .chat {
+    width: 100%!important;
+}
+}
+@media only screen and (max-width: 458px) {
+  .rollsHistory {
+    left: 20%!important;
+  }
 }

@@ -35,8 +35,8 @@
 }
 
 .roulette-bets .red-bets .red-bet, .roulette-bets .green-bets .green-bet, .roulette-bets .black-bets .black-bet {
-    height: 50px;
-    border-radius: 15px;
+
+    border-radius: 5px;
     color: white;
     font-weight: bold;
     padding: 10px;
@@ -81,7 +81,8 @@
     padding: 25px;
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 4rem;
+    align-items: center;
 }
 
 .roulette-set-bet .form-group:nth-child(1) input {
@@ -275,6 +276,7 @@ body .roulette {
     display: flex;
     justify-content: center;
     border-top: 1px solid #9daf9e;
+    align-items: center;
 }
 
 .chat .chat-body input {
