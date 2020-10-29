@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('common/header.ejs')%>
+</head>
+<body>
+    <%-include('common/nav.ejs')%>
+    <div class="container">
+        <div class="box">
+            <div class="box__head text-center">
+                <h1 class="box__title">Balance replenishment</h1>
+                <p>Choose a method that is convenient for you:</p>
+            </div>
+        </div>
+        <div class="row payments-collumn">
+            <div class="col-xl-3 col-md-4 col-sm-6 payments-collumn__item">
+                <a href="/deposit/coinpayments" class="payments-collumn__link">
+                    <img src="/img/coinpayments.png" alt="" class="coinpayments_img" height="50">
+                    <span class="payments-collumn__title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CoinPayments</font></font></span>
+                </a>
+            </div>
+            <div class="col-xl-3 col-md-4 col-sm-6 payments-collumn__item">
+                <a href="/deposit/payeer" class="payments-collumn__link">
+                    <img src="/img/payeer_logo.png" alt="" class="payments-collumn__img " height="50">
+                    <span class="payments-collumn__title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Payeer</font></font></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

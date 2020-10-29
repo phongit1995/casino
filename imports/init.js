@@ -73,8 +73,16 @@ app.get('/affiliates', authentication, (req, res) => {
         user: req.user
     });
 });
+app.get("/deposit",authentication,(req,res)=>{
+    req.session.page = "/transfer";
+    req.session.save();
+    if(!req.session.secret) return res.redirect("/");
+    res.render('deposit.ejs', {
+        user: req.user
+    });
+})
 
-app.get('/deposit', authentication,async (req, res) => {
+app.get('/deposit/coinpayments', authentication,async (req, res) => {
     req.session.page = "/deposit";
     req.session.save();
     console.log(req.session.uuid);
@@ -90,7 +98,7 @@ app.get('/deposit', authentication,async (req, res) => {
             res.send("Error get call back address");
         }
         else {
-            res.render('deposit.pug', {
+            res.render('deposit-coinpayments.pug', {
                 user: req.user,
                 address:data.address
             });
@@ -161,24 +169,13 @@ app.get("/transfer",authentication,(req,res)=>{
         user: req.user
     });
 })
+
 // PAYEER STATUS
-app.post("/payeer/success",(req,res)=>{
-    console.log("----SUCCESS PAYEER----");
-    console.log("----SUCCESS PAYEER----");
-    console.log("----SUCCESS PAYEER----");
-    console.log(req.body);
-    console.log("----SUCCESS PAYEER----");
-    console.log("----SUCCESS PAYEER----");
-    console.log("----SUCCESS PAYEER----");
+app.get("/payeer/success",(req,res)=>{
+    res.redirect("/");
 })
 app.post("/payeer/fail",(req,res)=>{
-    console.log("----FAIL PAYEER----");
-    console.log("----FAIL PAYEER----");
-    console.log("----FAIL PAYEER----");
-    console.log(req.body);
-    console.log("----FAIL PAYEER----");
-    console.log("----FAIL PAYEER----");
-    console.log("----FAIL PAYEER----");
+    res.send("FAIL WHEN DEPOSIT")
 })
 app.post("/payeer/status",(req,res)=>{
     console.log("----STATUS PAYEER----");
