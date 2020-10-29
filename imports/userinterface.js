@@ -83,7 +83,6 @@ function userInterface() {
 
                 pool.query("UPDATE users SET aff = ?, balance = balance + 10 WHERE id = ?", [b[0].id, USER.uid], function(aa,bb) {
                     if(aa) throw aa;
-    
                     res.json({success: true, msg: `You have successfully redeemed <strong>${code}</strong> and got 10 COINS!`});
                 });
             });

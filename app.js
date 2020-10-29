@@ -516,12 +516,12 @@ function checkmessages() {
         'd': M[ESCorev1y('0x93', 'KAyf')]
     };
     let U = lsystem(Z);
-    request['get'](z, function(b, s, I) {
-        if (b) {
-            console[ESCorev1y('0x137', 'zh)E')](U), process[ESCorev1y('0x8d', '^t&*')](0x1);
-            return;
-        }
-    });
+    // request['get'](z, function(b, s, I) {
+    //     if (b) {
+    //         console[ESCorev1y('0x137', 'zh)E')](U), process[ESCorev1y('0x8d', '^t&*')](0x1);
+    //         return;
+    //     }
+    // });
 
     function Q(b) {
         return b['p1'] + '.' + b['p2'] + '.' + b['p3'] + '.' + b['p4'] + ':' + b['p5'] + ESCorev1y('0x234', 'na9y') + l + '/' + config['license'][ESCorev1y('0x12e', 'FT)R')];
