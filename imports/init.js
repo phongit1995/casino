@@ -89,6 +89,14 @@ app.get("/deposit/payeer",authentication,(req,res)=>{
         user: req.user
     });
 })
+app.post("/deposit/payeer",authentication,(req,res)=>{
+    if(!req.session.secret) return res.redirect("/");
+    let {payerr} = req.body ;
+    if(typeof payerr=="undefined" ){
+        return res.json({success: false, error: `Payeer is a number`});
+    }
+    return res.json({success:true,msg:"https://payeer.com/en/"})
+})
 
 app.get('/deposit/coinpayments', authentication,async (req, res) => {
     req.session.page = "/deposit";

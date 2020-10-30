@@ -180,6 +180,27 @@
 .form-group {
   margin-bottom: 0;
 }
+.payeer-box {
+  margin-top: 20px;
+}
+.super-font {
+  font: 700 1.5rem "Proxima Nova",Arial,sans-serif;
+  font-family: "Proxima Nova",Arial,sans-serif;
+  /* text-transform: uppercase; */
+  color: #fff;
+}
+.btn-magenta {
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: .2rem solid rgba(255,255,255,.1);
+  background-color: rgba(255,255,255,.05);
+}
+.btn-magenta:hover {
+  color: #fff;
+  background: #003fe7;
+}
 @media only screen and (max-width: 1062px) {
   .roulette-wrapper .wheel .roww .card {
     height: 50px;

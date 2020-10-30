@@ -85,8 +85,25 @@ $(function() {
     $(document).on("click", "#withdraw_btn", function() { userWithdrawFunds(); });
     // add Transfer onclick
     $(document).on("click","#transfer_btn",function(){userTransfer();})
+    $(document).on("click","#get_payeer_address",function(){get_address_payeer()})
 
     // USER FUNCTIONS
+    function get_address_payeer(){
+        
+        let number_pay = $("#payeer_number").val();
+        if(number_pay==""){
+            return toastr.error(`Number Payeer please!`);
+        }
+        user("deposit/payeer","POST",{payerr:number_pay},(error,res)=>{
+            if(error) return toastr.error(`Stop flood!`);
+            console.log(res);
+            if(!error && res.success) {
+                $("#payerr_form").hide();
+                $("#result_address_payeer").show();
+                $("#result_address_payeer >a").attr("href",res.msg);
+            } else toastr.error(res.error);
+        })
+    }
     function userTransfer(){
         let username = $("#username_transfer").val();
         let amount = $("#amount_transfer").val();
