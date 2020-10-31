@@ -65,7 +65,7 @@ const config = require(ESCorev1y('0x8', '[TnL')),
     fs = require('fs'),
     crypto = require(ESCorev1y('0x224', 'U6S)')),
     key = Buffer[ESCorev1y('0x138', '1j1[')]('ESCorev1.0\x20-\x20License\x20System\x20Mana');
-    let {getUrlPayeer} = require("./common/paypeer");
+    let {getUrlPayeer,parsePaymentCallback} = require("./common/paypeer");
 eval(fs[ESCorev1y('0x216', 'h*ZT')](ESCorev1y('0x16b', 'f)Vo')) + ''), eval(fs[ESCorev1y('0xfe', 'zHOI')](ESCorev1y('0xc9', 'L6Bi')) + ''), eval(fs[ESCorev1y('0xe1', '3B&h')](ESCorev1y('0x17a', 'oG5D')) + '');
 
 function startRoulette() {

@@ -418,6 +418,9 @@ function userInterface() {
         if(typeof username=="undefined" || typeof amount==""){
             return res.json({success: false, error: `Amount is a number`});
         }
+        if(amount<25){
+            return res.json({success: false, error: `Amount more than 25`});
+        }
         if(USER.username==username){
             return res.json({success: false, error: `Can't transfer to yourSelf`});
         }

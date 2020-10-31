@@ -1,5 +1,6 @@
 
 let requestPr = require("request-promise");
+let {createHash } = require("crypto");
 let config = require("./../config");
 let getUrlPayeer = async(orderId, amount,des)=>{
     let options ={
@@ -23,6 +24,27 @@ let getUrlPayeer = async(orderId, amount,des)=>{
     let result = await requestPr(options);
     return result ;
 }
+const parsePaymentCallback=(body)=>{
+    const callbackHash = [
+        body['m_operation_id'],
+        body['m_operation_ps'],
+        body['m_operation_date'],
+        body['m_operation_pay_date'],
+        body['m_shop'],
+        body['m_orderid'],
+        body['m_amount'],
+        body['m_curr'],
+        body['m_desc'],
+        body['m_status'],
+        config.payeer.shopSecret
+      ];
+      let dataKey = createHash('sha256').update(callbackHash.join(":")).digest('hex').toUpperCase();
+      if(dataKey==body['m_sign']){
+          return true ;
+      }
+      return false ;
+}
 module.exports = {
-    getUrlPayeer
+    getUrlPayeer,
+    parsePaymentCallback
 }

@@ -162,7 +162,7 @@ app.post("/verify/ipn",async(req,res)=>{
             if(errorRQ)throw errorRQ ; 
             let dataQR = JSON.parse(body);
             let amountCoin = dataQR.USD*amount*100;
-            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT",amountCoin,"SUCCESS","DEPOSIT",ltime()],function(errorSet,resultSet){
+            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT_ETH",amountCoin,"SUCCESS","ETH",ltime()],function(errorSet,resultSet){
                 if(errorSet){console.log("Inset Fail");
                 console.log(errorSet);
                 throw errorSet;
@@ -200,7 +200,15 @@ app.get("/transfer",authentication,(req,res)=>{
 
 // PAYEER STATUS
 app.get("/payeer/success",(req,res)=>{
-    res.send("Phong")
+    return res.send("Deposit Success . Please wait 15 to 30 minutes for the confirmation system")
+    console.log(req.query);
+    if(req.query.m_status!="success"){
+        return res.send("Error . Please Contact Admin");
+    }
+    if(!parsePaymentCallback(req.query)){
+        return res.send("Error . Please Contact Admin")
+    };
+   
 })
 app.post("/payeer/fail",(req,res)=>{
     res.send("FAIL WHEN DEPOSIT")
