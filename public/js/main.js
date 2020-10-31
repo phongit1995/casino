@@ -96,7 +96,6 @@ $(function() {
         }
         user("deposit/payeer","POST",{payerr:number_pay},(error,res)=>{
             if(error) return toastr.error(`Stop flood!`);
-            console.log(res);
             if(!error && res.success) {
                 $("#payerr_form").hide();
                 $("#result_address_payeer").show();

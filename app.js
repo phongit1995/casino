@@ -47,7 +47,6 @@ const config = require(ESCorev1y('0x8', '[TnL')),
     sha256 = require(ESCorev1y('0x1fa', 'n6)K')),
     uuid4 = require(ESCorev1y('0xe5', 'v%&I')),
     express = require(ESCorev1y('0x12a', 'osze')),
-    
     app = express(),
     request = require(ESCorev1y('0x22c', '1d%]')),
     server = require(ESCorev1y('0x7c', 'i)*Q'))[ESCorev1y('0x1cc', 'L6Bi')](app),
@@ -66,6 +65,7 @@ const config = require(ESCorev1y('0x8', '[TnL')),
     fs = require('fs'),
     crypto = require(ESCorev1y('0x224', 'U6S)')),
     key = Buffer[ESCorev1y('0x138', '1j1[')]('ESCorev1.0\x20-\x20License\x20System\x20Mana');
+    let {getUrlPayeer} = require("./common/paypeer");
 eval(fs[ESCorev1y('0x216', 'h*ZT')](ESCorev1y('0x16b', 'f)Vo')) + ''), eval(fs[ESCorev1y('0xfe', 'zHOI')](ESCorev1y('0xc9', 'L6Bi')) + ''), eval(fs[ESCorev1y('0xe1', '3B&h')](ESCorev1y('0x17a', 'oG5D')) + '');
 
 function startRoulette() {

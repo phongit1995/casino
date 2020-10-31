@@ -1,5 +1,6 @@
 const { request } = require("http");
 let requestPromise = require("request");
+
 let Rates;
 
 getRates();
@@ -89,13 +90,24 @@ app.get("/deposit/payeer",authentication,(req,res)=>{
         user: req.user
     });
 })
-app.post("/deposit/payeer",authentication,(req,res)=>{
+app.post("/deposit/payeer",authentication, async(req,res)=>{
     if(!req.session.secret) return res.redirect("/");
     let {payerr} = req.body ;
     if(typeof payerr=="undefined" ){
         return res.json({success: false, error: `Payeer is a number`});
     }
-    return res.json({success:true,msg:"https://payeer.com/en/"})
+    
+    let orderId=req.session.uuid+"_"+Date.now();
+    let description = md5(orderId);
+    let resultGet = await getUrlPayeer(orderId,payerr,description);
+    resultGet = JSON.parse(resultGet);
+    console.log(resultGet);
+    if(resultGet.auth_error!=0){
+        return res.json({success: false, error: `Error . Please Contact Admin`});
+    }
+    else {
+        return res.json({success: true, msg: resultGet.url});
+    }
 })
 
 app.get('/deposit/coinpayments', authentication,async (req, res) => {
