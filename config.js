@@ -22,7 +22,8 @@ const config = {
         account:"P1021945700",
         apiId:1193360077,
         apiPass:"Phongit1995",
-        shopId:1193352428
+        shopId:1193352428,
+        shopSecret:"Phongit1995"
     }
 };
 
