@@ -200,7 +200,7 @@ app.get("/transfer",authentication,(req,res)=>{
 
 // PAYEER STATUS
 app.get("/payeer/success",(req,res)=>{
-    //res.redirect("/");
+    res.send("Phong")
 })
 app.post("/payeer/fail",(req,res)=>{
     res.send("FAIL WHEN DEPOSIT")
