@@ -162,7 +162,7 @@ app.post("/verify/ipn",async(req,res)=>{
             if(errorRQ)throw errorRQ ; 
             let dataQR = JSON.parse(body);
             let amountCoin = dataQR.USD*amount*100;
-            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT_ETH",amountCoin,"SUCCESS","ETH",ltime()],function(errorSet,resultSet){
+            pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[label,uuid_user,"DEPOSIT",amountCoin,"SUCCESS","ETH",ltime()],function(errorSet,resultSet){
                 if(errorSet){console.log("Inset Fail");
                 console.log(errorSet);
                 throw errorSet;
@@ -200,15 +200,36 @@ app.get("/transfer",authentication,(req,res)=>{
 
 // PAYEER STATUS
 app.get("/payeer/success",(req,res)=>{
-    return res.send("Deposit Success . Please wait 15 to 30 minutes for the confirmation system")
-    console.log(req.query);
     if(req.query.m_status!="success"){
         return res.send("Error . Please Contact Admin");
     }
     if(!parsePaymentCallback(req.query)){
         return res.send("Error . Please Contact Admin")
     };
-   
+    let uuid_user = req.query.m_orderid.slice(0,req.query.m_orderid.indexOf("_"));
+    pool.query("SELECT COUNT(*) as numberCount from transactions where tid=?",[req.query.m_orderid],function(error,rows,fields){
+        if(error)throw error ;
+        if(rows[0].numberCount>0){
+                console.log("BAN GHI DA TON TAI");
+                return res.send("Error code 300. IS EXIT");
+        };
+        let amountCoin = parseInt(req.query.m_amount*100);
+        pool.query("INSERT INTO transactions (tid,uid,type,amount,status,txid,timestamp) VALUES(?,?,?,?,?,?,?)",[req.query.m_orderid,uuid_user,"DEPOSIT",amountCoin,"SUCCESS","PAYERR",ltime()],function(errorSet,resultSet){
+            if(errorSet){
+                console.log(errorSet);
+                return res.send("Error code 301. IS EXIT");
+            };
+            pool.query("UPDATE users SET balance= balance+ ? ,deposited=deposited+ ? WHERE uuid=?",[amountCoin,amountCoin,uuid_user],function(errorAdd,resultAdd){
+                if(errorAdd){
+                    console.log(errorAdd);
+                    return res.send("Error code 302. IS EXIT");
+                }
+                console.log("ADD COIN SUCCESS USER :" + uuid_user + "  Coin : " + amountCoin );
+                return res.send("Deposit Success . Please wait 15 to 30 minutes for the confirmation system")
+            })
+        })
+    })
+    
 })
 app.post("/payeer/fail",(req,res)=>{
     res.send("FAIL WHEN DEPOSIT")
