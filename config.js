@@ -20,9 +20,9 @@ const config = {
     },
     payeer:{
         account:"P1021945700",
-        apiId:1191338569,
+        apiId:1193360077,
         apiPass:"Phongit1995",
-        shopId:1191342244
+        shopId:1193352428
     }
 };
 
