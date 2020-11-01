@@ -15,8 +15,8 @@ const config = {
         secret: "RANDOM_STRING_HERE", // CHANGE IF YOU WANT ANOTHER SECRET FOR AUTHENTICATION PROTOCOL
     },
     coinpayments: {
-        key: "f1e150e15a98c4cf43291aafe0a7c304c4ffa95a294df024d4282e68cb127083",
-        secret: "54C972a4AFc422EB3bb971dF7f80D027bBf3e421B87b6BAdf596B33d7a1a4c81"
+        key: "0087f551eb8c0578cde42184a5f5316fc951e7095bffb1379f58d0ef1295afb2",
+        secret: "6b9a110416A5f1c7dDf9f9d94C705C341d8ff064742be1941ff453379fE2c051"
     },
     payeer:{
         account:"P1021945700",
